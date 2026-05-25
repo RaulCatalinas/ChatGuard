@@ -1,22 +1,12 @@
 import 'package:chatguard/constants/app_settings.dart' show appName;
 import 'package:chatguard/constants/platform.dart' show isDesktop;
 import 'package:chatguard/managers/window_manager.dart' show configureWindow;
+import 'package:chatguard/router/app_router.dart' show appRouter;
 import 'package:flutter/material.dart'
     show
-        AppBar,
         BuildContext,
-        Center,
-        Column,
-        FloatingActionButton,
-        Icon,
-        Icons,
-        Scaffold,
         State,
         StatefulWidget,
-        StatelessWidget,
-        Text,
-        TextStyle,
-        Theme,
         Widget,
         WidgetsFlutterBinding,
         runApp;
@@ -44,62 +34,20 @@ void main() async {
   }
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
+  State<StatefulWidget> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
   Widget build(BuildContext context) {
-    return ThemedApp(
+    return ThemedApp.router(
       title: appName,
-      home: const MyHomePage(),
       fontFamily: isDesktop ? 'Inter' : null,
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text(appName),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: .center,
-          children: [
-            const Text(
-              'You have pushed the button this many times:',
-              style: TextStyle(fontWeight: .w600),
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
+      routerConfig: appRouter,
     );
   }
 
