@@ -1,4 +1,5 @@
 import 'package:chatguard/constants/app_settings.dart' show appName;
+import 'package:chatguard/constants/platform.dart' show isDesktop;
 import 'package:chatguard/managers/window_manager.dart' show configureWindow;
 import 'package:flutter/material.dart'
     show
@@ -14,6 +15,7 @@ import 'package:flutter/material.dart'
         StatefulWidget,
         StatelessWidget,
         Text,
+        TextStyle,
         Theme,
         Widget,
         WidgetsFlutterBinding,
@@ -47,7 +49,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const ThemedApp(title: appName, home: MyHomePage());
+    return ThemedApp(
+      title: appName,
+      home: const MyHomePage(),
+      fontFamily: isDesktop ? 'Inter' : null,
+    );
   }
 }
 
@@ -78,7 +84,10 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: .center,
           children: [
-            const Text('You have pushed the button this many times:'),
+            const Text(
+              'You have pushed the button this many times:',
+              style: TextStyle(fontWeight: .w600),
+            ),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,

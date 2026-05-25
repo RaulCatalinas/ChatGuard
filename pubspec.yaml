@@ -22,8 +22,18 @@ dev_dependencies:
     sdk: flutter
 
   flutter_lints: ^6.0.0
+
 flutter:
   uses-material-design: true
+
+  fonts:
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/inter-latin-400-normal.ttf
+          weight: 400
+        
+        - asset: assets/fonts/inter-latin-600-normal.ttf
+          weight: 600
 
 flutter_launcher_icons:
   image_path: "assets/images/icon.png"
@@ -44,12 +54,12 @@ flutter_launcher_icons:
 
 flutter_native_splash:
   color: "#0E0E10"
-  image: assets/icon.png
+  image: assets/images/icon.png
 
   android: true
   ios: true
   web: false
 
   android_12:
-    image: assets/icon.png
+    image: assets/images/icon.png
     icon_background_color_dark: "#0E0E10"
