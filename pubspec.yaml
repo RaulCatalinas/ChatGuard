@@ -1,6 +1,6 @@
 name: chatguard
 description: "A new Flutter project."
-version: 1.0.0+1
+version: 0.0.1+1
 
 environment:
   sdk: ^3.12.0
