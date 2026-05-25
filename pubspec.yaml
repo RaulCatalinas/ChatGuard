@@ -1,5 +1,5 @@
 name: chatguard
-description: "A new Flutter project."
+description: "About Twitch moderation bot and management panel for streamers. Define your rules, manage your community and let ChatGuard enforce moderation automatically."
 version: 0.0.1+1
 
 environment:
