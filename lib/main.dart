@@ -16,15 +16,20 @@ import 'package:flutter/material.dart'
         Widget,
         WidgetsFlutterBinding,
         runApp;
+import 'package:flutter_native_splash/flutter_native_splash.dart'
+    show FlutterNativeSplash;
 import 'package:flutter_themed/themed_app.dart' show ThemedApp;
 import 'package:logkeeper/logkeeper.dart' show LogKeeper;
 import 'package:window_close_guard/window_close_guard.dart'
     show WindowCloseGuard;
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
+  final binding = WidgetsFlutterBinding.ensureInitialized();
+
+  FlutterNativeSplash.preserve(widgetsBinding: binding);
   LogKeeper.configure(maxLogAgeDays: 7);
 
+  FlutterNativeSplash.remove();
   runApp(const MyApp());
 }
 
