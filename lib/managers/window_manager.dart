@@ -1,14 +1,13 @@
-import 'dart:io' show Platform;
-
 import 'package:chatguard/constants/app_settings.dart'
     show appName, centerWindow, maximizeWindow, resizeWindow, windowSize;
+import 'package:chatguard/constants/platform.dart' show isDesktop;
 import 'package:logkeeper/logkeeper.dart' show LogKeeper;
 import 'package:window_manager/window_manager.dart'
     show WindowOptions, windowManager;
 
 Future<void> configureWindow() async {
   try {
-    if (!Platform.isWindows && !Platform.isLinux && !Platform.isMacOS) {
+    if (!isDesktop) {
       LogKeeper.info(
         'User is on mobile platform, skipping window configuration.',
       );
