@@ -23,6 +23,8 @@ import 'package:window_close_guard/window_close_guard.dart'
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  LogKeeper.configure(maxLogAgeDays: 7);
+
   runApp(const MyApp());
 }
 
