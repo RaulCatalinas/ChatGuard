@@ -1,3 +1,5 @@
+import 'package:chatguard/constants/app_settings.dart' show appName;
+import 'package:chatguard/managers/window_manager.dart' show configureWindow;
 import 'package:flutter/material.dart'
     show
         AppBar,
@@ -23,14 +25,21 @@ import 'package:logkeeper/logkeeper.dart' show LogKeeper;
 import 'package:window_close_guard/window_close_guard.dart'
     show WindowCloseGuard;
 
-void main() {
-  final binding = WidgetsFlutterBinding.ensureInitialized();
+void main() async {
+  try {
+    final binding = WidgetsFlutterBinding.ensureInitialized();
 
-  FlutterNativeSplash.preserve(widgetsBinding: binding);
-  LogKeeper.configure(maxLogAgeDays: 7);
+    FlutterNativeSplash.preserve(widgetsBinding: binding);
+    LogKeeper.configure(maxLogAgeDays: 7);
 
-  FlutterNativeSplash.remove();
-  runApp(const MyApp());
+    await configureWindow();
+
+    FlutterNativeSplash.remove();
+    runApp(const MyApp());
+  } catch (e, stackTrace) {
+    LogKeeper.critical('Error during app initialization: $e');
+    LogKeeper.critical('StackTrace: $stackTrace');
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -38,7 +47,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const ThemedApp(title: 'ChatGuard', home: MyHomePage());
+    return const ThemedApp(title: appName, home: MyHomePage());
   }
 }
 
@@ -63,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('ChatGuard'),
+        title: const Text(appName),
       ),
       body: Center(
         child: Column(
